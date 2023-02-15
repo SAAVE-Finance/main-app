@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Panel from "@/components/Panel";
+import Earnings from "@/components/Earning";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Earnings />
         <Panel />
       </main>
     </>

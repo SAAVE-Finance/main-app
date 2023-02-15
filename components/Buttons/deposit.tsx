@@ -13,9 +13,6 @@ const Deposit = () => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
   };
@@ -33,13 +30,33 @@ const Deposit = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+        <Box sx={style} className="bg-[#bffafff9] w-[40vw]">
+          <Typography
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            className="text-center text-xl"
+          >
+            Deposit
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <div className="flex flex-col align-middle justify-center text-white">
+            <input
+              placeholder="Amount of USDC"
+              type="number"
+              className="p-4 rounded border-none bg-[#282640] my-2 "
+            />
+            <input
+              placeholder="Amount of USDT"
+              type="number"
+              className="p-4 rounded border-none bg-[#282640] my-2"
+            />
+            <input
+              placeholder="Amount of DAI"
+              type="number"
+              className="p-4 rounded border-none bg-[#282640] my-2"
+            />
+            <button className="p-4 bg-[#ff4747] my-3 rounded">Submit</button>
+          </div>
         </Box>
       </Modal>
     </>

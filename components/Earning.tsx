@@ -1,6 +1,6 @@
 import { useAccount, useContract, useContractReads } from "wagmi";
 import SaaveABI from "@/abis/abi.json";
-import { ethers } from "ethers";
+import { BigNumber, BigNumberish, ethers } from "ethers";
 import { useState } from "react";
 const Earnings = () => {
   const saaveContract = {
@@ -18,11 +18,12 @@ const Earnings = () => {
         functionName: "getEarned",
       },
     ],
-    async onSuccess(data) {
+    async onSuccess(data: [BigNumberish, BigNumberish]) {
       console.log(data);
-      var totalEarned = await ethers.utils.formatEther(data[1]);
+
+      var totalEarned = ethers.utils.formatEther(data[1]);
       setEarned(totalEarned);
-      var totalDeposited = await ethers.utils.formatEther(data[0]);
+      var totalDeposited = ethers.utils.formatEther(data[0]);
       setDeposit(totalDeposited);
     },
   });

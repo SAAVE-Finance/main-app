@@ -3,6 +3,8 @@ import Panel from "@/components/Panel";
 import Earnings from "@/components/Earning";
 import { useContract } from "wagmi";
 import SaaveABI from "@/abis/abi.json";
+import Image from "next/image";
+import Saave from "@/components/Cards/Saave";
 
 export default function Home() {
   const contract = useContract({
@@ -20,7 +22,8 @@ export default function Home() {
       </Head>
       <main>
         <Earnings />
-        <Panel />
+        {/* <Panel /> */}
+        <Saave />
       </main>
     </>
   );

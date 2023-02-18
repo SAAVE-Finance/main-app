@@ -93,36 +93,36 @@ const DepositModal = () => {
       <input
         placeholder="Amount of USDC"
         type="number"
-        className="p-4 rounded border-none bg-[#282640] my-2 "
+        className="p-4 rounded-full border-none bg-[#282640] my-2 "
         value={depositUSDCValue}
         onChange={(e) => setDepositUSDCValue(e.target.value)}
       />
       {!(depositUSDCValue === "0") && depositUSDCValue && (
-        <button className="p-3 bg-[#77f177]" onClick={handleClick}>
+        <button className="p-3 bg-[#77f177] rounded-full" onClick={handleClick}>
           Approve
         </button>
       )}
       <input
         placeholder="Amount of USDT"
         type="number"
-        className="p-4 rounded border-none bg-[#282640] my-2"
+        className="p-4 rounded-full border-none bg-[#282640] my-2"
         value={depositUSDTValue}
         onChange={(e) => setDepositUSDTValue(e.target.value)}
       />
       {!(depositUSDTValue === "0") && depositUSDTValue && (
-        <button className="p-3 bg-[#77f177]" onClick={handleClick}>
+        <button className="p-3 bg-[#77f177] rounded-full" onClick={handleClick}>
           Approve
         </button>
       )}
       <input
         placeholder="Amount of DAI"
         type="number"
-        className="p-4 rounded border-none bg-[#282640] my-2"
+        className="p-4 rounded-full border-none bg-[#282640] my-2"
         value={depositDAIValue}
         onChange={(e) => setDepositDAIValue(e.target.value)}
       />
       {!(depositDAIValue === "0") && depositDAIValue && (
-        <button className="p-3 bg-[#77f177]">Approve</button>
+        <button className="p-3 bg-[#77f177] rounded-full">Approve</button>
       )}
       <button className="p-4 bg-[#ff4747] my-3 rounded" onClick={handleSubmit}>
         Submit

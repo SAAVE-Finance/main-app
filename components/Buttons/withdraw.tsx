@@ -55,19 +55,22 @@ const Withdraw = () => {
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: 400,
-    bgcolor: "#ffff89",
+    bgcolor: "#fff",
     border: "2px solid #000",
+    borderRadius: "20px",
+    lineHeight:2,
     boxShadow: 24,
     p: 4,
   };
   return (
     <>
       <button
-        className="bg-[#ff4141] p-3 border shadow text-xl rounded-md px-3 hover:scale-105"
+        className="bg-transparent text-xl md:text-3xl font-bold text-gray-300 hover:text-white"
         onClick={handleClick}
       >
-        Withdraw
+        WITHDRAW
       </button>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -83,7 +86,7 @@ const Withdraw = () => {
             <p>CRV (USD): {crvValueUSD}</p>
             <p>Estimated Total: {estimatedTotal}</p>
           </div>
-          <button onClick={handleWithdraw} className="bg-[#ff3a3a] p-3">
+          <button onClick={handleWithdraw} className="bg-[#ff3a3a] rounded px-4 mt-2 py-2">
             Withdraw
           </button>
         </Box>

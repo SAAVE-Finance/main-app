@@ -61,28 +61,34 @@ const Deposit = () => {
   };
   return (
     <>
-      <button
+      {/* <button
         className="bg-[#42ff31] p-3 border shadow text-xl rounded-md px-3 hover:scale-105"
         onClick={handleClick}
       >
         Deposit
-      </button>
+      </button> */}
+      <button
+        className="bg-transparent text-xl md:text-3xl font-bold text-gray-300 hover:text-white"
+        onClick={handleClick}
+      >
+        DEPOSIT</button>
+
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style} className="bg-[#bffafff9] w-[40vw]">
+        <Box sx={style} className="bg-white rounded-3xl w-full md:w-[50vw]">
           <Typography
             id="modal-modal-title"
             variant="h6"
             component="h2"
             className="text-center text-xl"
           >
-            Deposit
+            <h1 className="text-2xl font-semibold text-center">Deposit</h1>
           </Typography>
-          <div className="flex">
+          <div className="flex-col md:flex-row flex w-full">
             <DepositModal />
             {/* <div className="flex flex-col align-middle justify-center text-white">
               <input
@@ -117,8 +123,8 @@ const Deposit = () => {
               )}
               <button className="p-4 bg-[#ff4747] my-3 rounded">Submit</button>
             </div> */}
-            <div className="flex flex-col border-l-2 border-black mx-2">
-              <h2 className="m-3">Wallet Balance</h2>
+            <div className="flex flex-col md:border-l-2 border-black bg-gray-100 rounded mx-2 w-full items-center ">
+              <h2 className="m-3 font-bold text-xl">Wallet Balance</h2>
               <h2 className="text-xl font-bold m-3 ">
                 USDC - {walletUSDCBalance}
               </h2>

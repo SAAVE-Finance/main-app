@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import USDTABI from "../../abis/usdt.json";
 import SaaveABI2 from "../../abis/SaaveContract2ABI.json";
 import USDCABI from "../../abis/usdc.json";
@@ -11,13 +11,23 @@ import {
   useSigner,
 } from "wagmi";
 import { BigNumberish, ethers } from "ethers";
+import { AuthContext } from "@/context/auth";
 const DepositModal = () => {
-  const [depositDAIValue, setDepositDAIValue] = useState("0");
-  const [depositUSDCValue, setDepositUSDCValue] = useState("0");
-  const [depositUSDTValue, setDepositUSDTValue] = useState("0");
-  const [daiAllowance, setDaiAllowance] = useState("0");
-  const [usdcAllowance, setUsdcAllowance] = useState("0");
-  const [usdtAllowance, setUsdtAllowance] = useState("0");
+  const {
+    usdtAllowance,
+    depositDAIValue,
+    daiAllowance,
+    usdcAllowance,
+    depositUSDTValue,
+    depositUSDCValue,
+    setDaiAllowance,
+    setUsdcAllowance,
+    setDepositUSDTValue,
+    setUsdtAllowance,
+    setDepositUSDCValue,
+    setDepositDAIValue,
+  } = useContext(AuthContext);
+
   const { data: signer, isError, isLoading } = useSigner();
   const usdcContract = useContract({
     address: "0xfC872E8Dc23fD2fDe20F720077016b9C4B1c8C59",

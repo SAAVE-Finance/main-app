@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import SaaveABI from "../../abis/abi.json";
 import Typography from "@mui/material/Typography";
 import { useContractReads } from "wagmi";
+import { AuthContext } from "@/context/auth";
 import DepositModal from "@/components/Modal/DepositModal";
 import { BigNumberish, ethers } from "ethers";
 
 const Deposit = () => {
-  const [walletUSDCBalance, setWalletUSDCBalance] = useState("0");
-  const [walletUSDTBalance, setWalletUSDTBalance] = useState("0");
-  const [walletDAIBalance, setWalletDAIBalance] = useState("0");
+  const {
+    walletUSDCBalance,
+    walletDAIBalance,
+    walletUSDTBalance,
+    setWalletUSDCBalance,
+    setWalletUSDTBalance,
+    setWalletDAIBalance,
+  } = useContext(AuthContext);
 
   const saaveContract = {
     address: "0xBFbA56f89f343dc43B99Dcb0c6e30045d2D2E948",

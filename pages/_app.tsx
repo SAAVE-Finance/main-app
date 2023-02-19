@@ -13,9 +13,9 @@ import Navbar from "@/components/Navbar";
 const { chains, provider, webSocketProvider } = configureChains(
   [
     polygon,
-    // ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
-    //   ? [polygonMumbai]
-    //   : []),
+    // // ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
+    // //   ? [polygonMumbai]
+    // //   : []),
   ],
   [
     alchemyProvider({

@@ -79,43 +79,30 @@ function Saave() {
         </div>
       </div>
 
-      <div className="relative h-full w-full md:w-[60vw] p-10 bg-gray-400 rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-40 border border-gray-100">
-        <div className="text-white font-bold text-base flex items-center">
-          <Image
-            src={Logo}
-            alt="img"
-            height={400}
-            width={400}
-            className="h-10 w-10"
-          />
-          SAAVE
-        </div>
+      <div className="relative mt-10 h-auto w-full md:w-[60vw] p-10 bg-gray-400 rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-40 border border-gray-100">
+        <div className="flex-col lg:flex-row flex items-center justify-center lg:divide-x-2 ">
+          <div className="w-full justify-center grid">
+            <h2 className="text-xl md:text-4xl font-bold text-gray-300 hover:text-white mt-4 text-center">
+              Withdraw
+            </h2>
+            <div className="mt-2  flex">
+              <div className="p-2">
+                <p  className="text-lg text-white leading-8">DAI : $ {estimatedDai}</p>
+                <p  className="text-lg text-white leading-8">USDT : $ {estimatedUsdt}</p>
+                <p  className="text-lg text-white leading-8">CRV (USD) : {crvValueUSD}</p>
+              </div>
+              <div className="p-2 pl-4">
+                <p  className="text-lg text-white leading-8">USDC : $ {estimatedUsdc}</p>
+                <p  className="text-lg text-white leading-8">CRV : {crvValue}</p>
+                <p  className="text-lg text-white leading-8">Estimated Total: {estimatedTotal}</p>
+              </div>
+              
+            </div>
 
-        <div className="flex flex-col sm:flex-row  justify-around p-4 mt-4">
-          <div>
-            <p>DAI: $ {estimatedDai}</p>
-            <p>USDC: $ {estimatedUsdc}</p>
-            <p>USDT: $ {estimatedUsdt}</p>
-            <p>CRV: {crvValue}</p>
-            <p>CRV (USD): {crvValueUSD}</p>
-            <p>Estimated Total: {estimatedTotal}</p>
+            <div className=" w-full px-4  pt-6 content-center justify-center align-middle text-center">
+            <button type="button" onClick={handleWithdraw} className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Withdraw</button>
+            </div>
           </div>
-          <button
-            onClick={handleWithdraw}
-            className="bg-[#ff3a3a] rounded px-4 mt-2 py-2"
-          >
-            Withdraw
-          </button>
-        </div>
-
-        <div className="relative -bottom-4 sm:-bottom-24 md:-bottom-28 flex justify-end">
-          <Image
-            src={Network}
-            alt="img"
-            height={400}
-            width={400}
-            className="h-10 w-10"
-          />
         </div>
       </div>
     </div>

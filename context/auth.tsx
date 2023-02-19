@@ -1,7 +1,12 @@
 import React, { ReactNode, createContext, useState } from "react";
-import { BigNumberish, ethers } from "ethers";
-import SaaveABI2 from "@/abis/SaaveContract2ABI.json";
-import { useContract, useContractReads, useSigner } from "wagmi";
+import { BigNumber, BigNumberish, ethers } from "ethers";
+import SAAVEABI from "@/abis/SAAVEABI.json";
+import {
+  useContract,
+  useContractRead,
+  useContractReads,
+  useSigner,
+} from "wagmi";
 export const AuthContext = createContext({
   walletUSDCBalance: "0",
   walletUSDTBalance: "0",
@@ -19,6 +24,18 @@ export const AuthContext = createContext({
   totalLP: "0",
   crvValueUSD: "0",
   crvValue: "0",
+  userEarned: "0",
+  userDeposit: "0",
+  estimatedTotal: "0",
+  estimatedUsdt: "0",
+  estimatedUsdc: "0",
+  estimatedDai: "0",
+  setEstimatedUsdt: (estimatedUsdt: string) => {},
+  setEstimatedUsdc: (estimatedUsdt: string) => {},
+  setEstimatedDai: (estimatedUsdt: string) => {},
+  setEstimatedTotal: (estimatedTotal: string) => {},
+  setUserDeposit: (userDeposit: string) => {},
+  setUserEarned: (userEarned: string) => {},
   setCrvValue: (crvValue: string) => {},
   setCrvValueUSD: (crvValueUSD: string) => {},
   setTotalLP: (totalLP: string) => {},
@@ -54,72 +71,172 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [usdtPoolBal, setUsdtPoolBal] = useState("0");
   const [userLP, setUserLP] = useState("0");
   const [totalLP, setTotalLP] = useState("0");
+  const [userDeposit, setUserDeposit] = useState("0");
+  const [userEarned, setUserEarned] = useState("0");
+  const [estimatedDai, setEstimatedDai] = useState("0");
+  const [estimatedUsdc, setEstimatedUsdc] = useState("0");
+  const [estimatedUsdt, setEstimatedUsdt] = useState("0");
+  const [estimatedTotal, setEstimatedTotal] = useState("0");
 
   const saaveContract = {
-    address: "0xe4463c64301f6021dba1f3ab7adbd85424a5da67",
-    abi: SaaveABI2,
+    address: SAAVEABI.address,
+    abi: SAAVEABI.abi,
   };
-  const { data: signer, isError, isLoading } = useSigner();
-  const saaveContract2 = useContract({
+  const { data } = useContractRead({
     ...saaveContract,
-    signerOrProvider: signer,
+    functionName: "getUserDeposit",
+    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
+    onSuccess(data: BigNumber) {
+      if (data) {
+        var totalDeposited = ethers.utils.formatEther(data);
+        setUserDeposit(totalDeposited);
+      }
+    },
+    onError(error) {
+      console.log("Error in UserDeposit", error);
+    },
   });
-  const { data } = useContractReads({
+
+  //getPoolDAIBalance
+
+  useContractRead({
+    ...saaveContract,
+    functionName: "getPoolDAIBalance",
+    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
+    onSuccess(data: BigNumber) {
+      if (data) {
+        var daiPool = ethers.utils.formatEther(data);
+        setDaiPoolBal(daiPool);
+      }
+    },
+    onError(error) {
+      console.log("Error in getPoolDAIBalance", error);
+    },
+  });
+
+  // getPoolUSDCBalance
+
+  useContractRead({
+    ...saaveContract,
+    functionName: "getPoolUSDCBalance",
+    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
+    onSuccess(data: BigNumber) {
+      if (data) {
+        var usdcPool = ethers.utils.formatEther(data);
+        setUsdcPoolBal(usdcPool);
+      }
+    },
+    onError(error) {
+      console.log("Error in getPoolUSDCBalance", error);
+    },
+  });
+
+  // getPoolUSDTBalance
+
+  useContractRead({
+    ...saaveContract,
+    functionName: "getPoolUSDTBalance",
+    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
+    onSuccess(data: BigNumber) {
+      if (data) {
+        var usdtPool = ethers.utils.formatEther(data);
+        setUsdtPoolBal(usdtPool);
+      }
+    },
+    onError(error) {
+      console.log("Error in getPoolUSDTBalance", error);
+    },
+  });
+  // totalLP
+  useContractRead({
+    ...saaveContract,
+    functionName: "totalLP",
+    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
+    onSuccess(data: BigNumber) {
+      if (data) {
+        var totalLP = ethers.utils.formatEther(data);
+        setTotalLP(totalLP);
+      }
+    },
+    onError(error) {
+      console.log("Error in totalLP", error);
+    },
+  });
+
+  // getUserLP
+  useContractRead({
+    ...saaveContract,
+    functionName: "getUserLP",
+    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
+    onSuccess(data: BigNumber) {
+      if (data) {
+        var userLP = ethers.utils.formatEther(data);
+        setUserLP(userLP);
+      }
+    },
+    onError(error) {
+      console.log("Error in getUserLP", error);
+    },
+  });
+
+  // totalCRVEarned
+  useContractRead({
+    ...saaveContract,
+    functionName: "totalCRVEarned",
+    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
+    onSuccess(data: BigNumber) {
+      if (data) {
+        var crv = ethers.utils.formatEther(data);
+        setCrvValue(crv);
+      }
+    },
+    onError(error) {
+      console.log("Error in totalCRVEarned", error);
+    },
+  });
+  // getCRVSold
+  useContractRead({
+    ...saaveContract,
+    functionName: "getCRVSold",
+    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
+    onSuccess(data: BigNumber) {
+      if (data) {
+        var crvUSD = ethers.utils.formatEther(data);
+        setCrvValueUSD(crvUSD);
+      }
+    },
+    onError(error) {
+      console.log("Error in getCRVSold", error);
+    },
+  });
+
+  const { isError, isLoading } = useContractReads({
     contracts: [
       {
         ...saaveContract,
-        functionName: "getPoolDAIBalance",
+        functionName: "getWalletUSDCBalance",
       },
       {
         ...saaveContract,
-        functionName: "getPoolUSDCBalance",
+        functionName: "getWalletUSDTBalance",
       },
       {
         ...saaveContract,
-        functionName: "getPoolUSDTBalance",
-      },
-      {
-        ...saaveContract,
-        functionName: "totalLP",
-      },
-      {
-        ...saaveContract,
-        functionName: "getUserLP",
-      },
-      {
-        ...saaveContract,
-        functionName: "totalCRVEarned",
-      },
-      {
-        ...saaveContract,
-        functionName: "getCRVSold",
+        functionName: "getWalletDAIBalance",
       },
     ],
-    async onSuccess(
-      data: [
-        BigNumberish,
-        BigNumberish,
-        BigNumberish,
-        BigNumberish,
-        BigNumberish,
-        BigNumberish,
-        BigNumberish
-      ]
-    ) {
-      var daiPool = ethers.utils.formatEther(data[0]);
-      setDaiPoolBal(daiPool);
-      var usdcPool = ethers.utils.formatEther(data[1]);
-      setUsdcPoolBal(usdcPool);
-      var usdtPool = ethers.utils.formatEther(data[2]);
-      setUsdtPoolBal(usdtPool);
-      var totalLP = ethers.utils.formatEther(data[3]);
-      setTotalLP(totalLP);
-      var userLP = ethers.utils.formatEther(data[4]);
-      setUserLP(userLP);
-      var crv = ethers.utils.formatEther(data[5]);
-      setCrvValue(crv);
-      var crvUSD = ethers.utils.formatEther(data[6]);
-      setCrvValueUSD(crvUSD);
+    async onSuccess(data: [BigNumberish, BigNumberish, BigNumberish]) {
+      if (data[0] && data[1] && data[2]) {
+        var totalDeposited = ethers.utils.formatEther(data[0]);
+        setWalletUSDCBalance(totalDeposited);
+        var totalEarned = ethers.utils.formatEther(data[1]);
+        setWalletUSDTBalance(totalEarned);
+        var totalEarned = ethers.utils.formatEther(data[2]);
+        setWalletDAIBalance(totalEarned);
+      }
+    },
+    onError(error) {
+      console.log("Error in getWalletBalance", error);
     },
   });
 
@@ -142,6 +259,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         walletUSDTBalance,
         crvValueUSD,
         crvValue,
+        userDeposit,
+        userEarned,
+        estimatedDai,
+        estimatedUsdc,
+        estimatedUsdt,
+        estimatedTotal,
+        setEstimatedDai,
+        setEstimatedUsdc,
+        setEstimatedUsdt,
+        setEstimatedTotal,
+        setUserDeposit,
+        setUserEarned,
         setCrvValueUSD,
         setCrvValue,
         setTotalLP,

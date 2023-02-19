@@ -1,15 +1,8 @@
 import Head from "next/head";
-import Panel from "@/components/Panel";
-import Earnings from "@/components/Earning";
-import { useContract } from "wagmi";
-import SaaveABI from "@/abis/abi.json";
+import Earnings from "@/components/Cards/Earning";
+import Saave from "@/components/Cards/Saave";
 
 export default function Home() {
-  const contract = useContract({
-    address: "0xBFbA56f89f343dc43B99Dcb0c6e30045d2D2E948",
-    abi: SaaveABI,
-  });
-
   return (
     <>
       <Head>
@@ -18,9 +11,9 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Earnings />
-        <Panel />
+      <main className="font-Inter">
+        {/* <Earnings /> */}
+        <Saave />
       </main>
     </>
   );

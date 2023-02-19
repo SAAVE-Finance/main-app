@@ -5,14 +5,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import type { AppProps } from "next/app";
 import { RainbowKitProvider, getDefaultWallets } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient, WagmiConfig } from "wagmi";
-import {
-  mainnet,
-  polygonMumbai,
-  polygon,
-  optimism,
-  arbitrum,
-  goerli,
-} from "wagmi/chains";
+import { polygon } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import Navbar from "@/components/Navbar";
@@ -20,9 +13,9 @@ import Navbar from "@/components/Navbar";
 const { chains, provider, webSocketProvider } = configureChains(
   [
     polygon,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
-      ? [polygonMumbai]
-      : []),
+    // // ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
+    // //   ? [polygonMumbai]
+    // //   : []),
   ],
   [
     alchemyProvider({

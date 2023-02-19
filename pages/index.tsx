@@ -1,6 +1,5 @@
 import Head from "next/head";
-import Panel from "@/components/Panel";
-import Earnings from "@/components/Earning";
+import Earnings from "@/components/Cards/Earning";
 import { useContract } from "wagmi";
 import SaaveABI from "@/abis/abi.json";
 import Saave from "@/components/Cards/Saave";
@@ -21,9 +20,7 @@ export default function Home() {
       </Head>
       <main className="font-Inter">
         <Earnings />
-        {/* <Panel /> */}
         <Saave />
-        {/* <DepositCard /> */}
       </main>
     </>
   );

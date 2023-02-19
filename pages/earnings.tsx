@@ -1,7 +1,11 @@
 import React from "react";
-
+import EarningsCard from "../components/Cards/Earning";
 const Earnings = () => {
-  return <div>Earnings</div>;
+  return (
+    <div>
+      <EarningsCard />
+    </div>
+  );
 };
 
 export default Earnings;

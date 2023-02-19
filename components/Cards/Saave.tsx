@@ -3,8 +3,6 @@ import Image from 'next/image'
 import Circle from "@/public/assets/Ellipse.png";
 import Logo from "@/public/assets/Saave.png";
 import Network from "@/public/assets/network.png";
-import Deposit from "../Buttons/deposit";
-import Withdraw from "../Buttons/withdraw";
 import { useRouter } from 'next/router'
 
 function Saave() {
@@ -35,11 +33,8 @@ function Saave() {
 
                 <h2 className="text-xl text-center text-white mx-auto">What are you looking to do today ?</h2>
                 <div className='flex-col sm:flex-row flex justify-around p-4 mt-4'>
-                    {/* <Deposit />
-                    <Withdraw /> */}
-
-                    <button className="bg-transparent text-xl md:text-3xl font-bold text-gray-300 hover:text-white" onClick={() => router.push('/deposit')}>DEPOSIT</button>
-                    <button className="bg-transparent text-xl md:text-3xl font-bold text-gray-300 hover:text-white" onClick={() => router.push('/withdraw')}>WITHDRAW</button>
+                    <button type="button" className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 rounded-lg text-xl md:text-3xl font-bold px-5 py-2.5 text-center mr-2 mb-2" onClick={() => router.push('/deposit')}>DEPOSIT</button>
+                    <button type="button" className="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 rounded-lg text-xl md:text-3xl font-bold px-5 py-2.5 text-center mr-2 mb-2" onClick={() => router.push('/withdraw')}>WITHDRAW</button>
                 </div>
                 {/* <div className='w-full p-4'>
                     <p className='text-center text-gray-300 text-lg'>Rewards 4% APY in last 90 days</p>

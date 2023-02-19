@@ -14,10 +14,7 @@ import { BigNumberish, ethers } from "ethers";
 import { AuthContext } from "@/context/auth";
 const DepositModal = () => {
   const {
-    usdtAllowance,
     depositDAIValue,
-    daiAllowance,
-    usdcAllowance,
     depositUSDTValue,
     depositUSDCValue,
     setDaiAllowance,
@@ -75,10 +72,6 @@ const DepositModal = () => {
     address: "0xA02f6adc7926efeBBd59Fd43A84f4E0c0c91e832",
     abi: USDTABI,
   };
-  // const DAIContract = {
-  //   address: "0xd393b1E02dA9831Ff419e22eA105aAe4c47E1253",
-  //   abi: SaaveABI,
-  // };
   const handleClick = () => {
     usdcContract!.approve(
       "0xe4463c64301f6021dba1f3ab7adbd85424a5da67",

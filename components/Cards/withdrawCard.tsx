@@ -1,13 +1,55 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
+import SAAVEABI from "@/abis/SAAVEABI.json";
 import Circle from "@/public/assets/Polygon.png";
 import Logo from "@/public/assets/Saave.png";
 import Network from "@/public/assets/network.png";
 import { useRouter } from "next/router";
+import { AuthContext } from "@/context/auth";
+import { useContract, useSigner } from "wagmi";
 
 function Saave() {
   const [depositClicked, setDepositClicked] = useState(false);
   const [withdrawClicked, setWithdrawClicked] = useState(false);
+  const {
+    totalLP,
+    userLP,
+    daiPoolBal,
+    usdcPoolBal,
+    usdtPoolBal,
+    crvValue,
+    crvValueUSD,
+  } = useContext(AuthContext);
+  const [estimatedDai, setEstimatedDai] = useState("0");
+  const [estimatedUsdc, setEstimatedUsdc] = useState("0");
+  const [estimatedUsdt, setEstimatedUsdt] = useState("0");
+  const [estimatedTotal, setEstimatedTotal] = useState("0");
+  const saaveContract = {
+    address: SAAVEABI.address,
+    abi: SAAVEABI.abi,
+  };
+  const { data: signer, isError, isLoading } = useSigner();
+  const saaveContract2 = useContract({
+    ...saaveContract,
+    signerOrProvider: signer,
+  });
+  const handleWithdraw = () => {
+    saaveContract2!.withdraw();
+  };
+  useEffect(() => {
+    if (totalLP === "0") return;
+    const dai =
+      parseFloat(daiPoolBal) * (parseFloat(userLP) / parseFloat(totalLP));
+    const usdc =
+      parseFloat(usdcPoolBal) * (parseFloat(userLP) / parseFloat(totalLP));
+    const usdt =
+      parseFloat(usdtPoolBal) * (parseFloat(userLP) / parseFloat(totalLP));
+    const total = dai + usdc + usdt;
+    setEstimatedDai(dai.toString());
+    setEstimatedUsdc(usdc.toString());
+    setEstimatedUsdt(usdt.toString());
+    setEstimatedTotal(total.toString());
+  }, [totalLP, userLP, daiPoolBal, usdcPoolBal, usdtPoolBal]);
 
   const handleClick = () => {
     setDepositClicked(true);
@@ -49,32 +91,23 @@ function Saave() {
           SAAVE
         </div>
 
-        <h2 className="text-xl text-center text-white mx-auto">
-          What are you looking to do today ?
-        </h2>
-        <div className="flex-col sm:flex-row flex justify-around p-4 mt-4">
-          {/* <Deposit />
-                    <Withdraw /> */}
-
+        <div className="flex flex-col sm:flex-row  justify-around p-4 mt-4">
+          <div>
+            <p>DAI: $ {estimatedDai}</p>
+            <p>USDC: $ {estimatedUsdc}</p>
+            <p>USDT: $ {estimatedUsdt}</p>
+            <p>CRV: {crvValue}</p>
+            <p>CRV (USD): {crvValueUSD}</p>
+            <p>Estimated Total: {estimatedTotal}</p>
+          </div>
           <button
-            className="bg-transparent text-xl md:text-3xl font-bold text-gray-300 hover:text-white"
-            onClick={() => router.push("/deposit")}
+            onClick={handleWithdraw}
+            className="bg-[#ff3a3a] rounded px-4 mt-2 py-2"
           >
-            DEPOSIT
-          </button>
-          <button
-            className="bg-transparent text-xl md:text-3xl font-bold text-gray-300 hover:text-white"
-            onClick={() => router.push("/withdraw")}
-          >
-            WITHDRAW
+            Withdraw
           </button>
         </div>
-        {/* <div className='w-full p-4'>
-                    <p className='text-center text-gray-300 text-lg'>Rewards 4% APY in last 90 days</p>
-                    <p>
 
-                    </p>
-                </div> */}
         <div className="relative -bottom-4 sm:-bottom-24 md:-bottom-28 flex justify-end">
           <Image
             src={Network}

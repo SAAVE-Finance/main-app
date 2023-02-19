@@ -30,10 +30,13 @@ const Earnings = () => {
     if (totalLP === "0") return;
     const dai =
       parseFloat(daiPoolBal) * (parseFloat(userLP) / parseFloat(totalLP));
+    // console.log("DAI IS", dai);
     const usdc =
       parseFloat(usdcPoolBal) * (parseFloat(userLP) / parseFloat(totalLP));
+    // console.log("USDC IS", usdc);
     const usdt =
       parseFloat(usdtPoolBal) * (parseFloat(userLP) / parseFloat(totalLP));
+    // console.log("USDT IS", usdt);
     const total = dai + usdc + usdt;
     const earned = total - parseFloat(userDeposit);
     setUserEarned(earned.toString());

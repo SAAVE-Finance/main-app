@@ -210,6 +210,36 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     },
   });
 
+  const { isError, isLoading } = useContractReads({
+    contracts: [
+      {
+        ...saaveContract,
+        functionName: "getWalletUSDCBalance",
+      },
+      {
+        ...saaveContract,
+        functionName: "getWalletUSDTBalance",
+      },
+      {
+        ...saaveContract,
+        functionName: "getWalletDAIBalance",
+      },
+    ],
+    async onSuccess(data: [BigNumberish, BigNumberish, BigNumberish]) {
+      if (data[0] && data[1] && data[2]) {
+        var totalDeposited = ethers.utils.formatEther(data[0]);
+        setWalletUSDCBalance(totalDeposited);
+        var totalEarned = ethers.utils.formatEther(data[1]);
+        setWalletUSDTBalance(totalEarned);
+        var totalEarned = ethers.utils.formatEther(data[2]);
+        setWalletDAIBalance(totalEarned);
+      }
+    },
+    onError(error) {
+      console.log("Error in getWalletBalance", error);
+    },
+  });
+
   return (
     <AuthContext.Provider
       value={{

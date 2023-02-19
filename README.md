@@ -55,7 +55,7 @@ Here are the steps to be taken after that :
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/SAAVE-Finance/landing.git
+git clone https://github.com/SAAVE-Finance/main-app.git
 ```
 
 2. Change directory :

@@ -5,6 +5,11 @@ import Logo from "@/public/assets/Saave.png";
 import Network from "@/public/assets/network.png";
 import { AuthContext } from "@/context/auth";
 import { useRouter } from "next/router";
+import USDCABI from "@/abis/usdc.json";
+import USDTABI from "@/abis/usdt.json";
+import DAIABI from "@/abis/DAI.json";
+import { ethers } from "ethers";
+import { useContract, useSigner } from "wagmi";
 
 const Saave = () => {
   const [depositClicked, setDepositClicked] = useState(false);
@@ -26,9 +31,35 @@ const Saave = () => {
   const handleClick = () => {
     setDepositClicked(true);
   };
+  const { data: signer, isError, isLoading } = useSigner();
+  const USDCContract = useContract({
+    address: USDCABI.address,
+    abi: USDCABI.abi,
+    signerOrProvider: signer,
+  });
+
+  const USDTContract = {
+    address: USDTABI.address,
+    abi: USDTABI.abi,
+  };
+  const DAIContract = {
+    address: DAIABI.address,
+    abi: DAIABI.abi,
+  };
+
+  const handleApproveUSDC = () => {
+    console.log("Approving USDC");
+    USDTContract!.approve(
+      "0xEC68681511D9992bB297223b0f5195a2C8e55f84",
+      ethers.utils.parseUnits(depositUSDCValue.toString(), "ethers")
+    );
+  };
+  // const handleSubmit = () => {
+  //   saaveContract2!.deposit();
+  // };
   const router = useRouter();
   return (
-    <div className="font-Inter h-[60vh] w-full p-10 flex items-center justify-center relative">
+    <div className="font-Inter h-[80vh] w-full p-10 flex items-center justify-center relative">
       {/* <h1 className='text-white text-2xl'>Hello</h1> */}
       <div className="absolute h-full w-full md:w-[80vw] -z-30 -top-[45px] left-[120px] flex flex-col">
         <div className="flex justify-end">
@@ -68,59 +99,47 @@ const Saave = () => {
             <h2 className="text-xl md:text-3xl font-bold text-gray-300 hover:text-white mt-4">
               DEPOSIT
             </h2>
-            <div className=" p-4 mt-2 ">
-              <form className="w-full md:w-1/2">
-                <div className="flex-col  flex items-center py-2">
-                  <div className="flex flex-col md:flex-col m-2">
-                    <div className="border-b-2 border-white w-full md:w-24">
-                      <input
-                        className=" appearance-none bg-transparent border-none w-full text-gray-100 mr-3 py-1 px-2 leading-tight focus:outline-none placeholder:text-gray-100 placeholder:text-base "
-                        type="number"
-                        placeholder="USDT"
-                        aria-label="Enter Amount"
-                      />
-                    </div>
-                    <button
-                      className="mt-1 sm:mt-2 flex-shrink-0 text-base sm:text-xl font-bold text-white py-1 px-2 rounded"
-                      type="button"
-                    >
-                      APPROVE
-                    </button>
-                  </div>
-                  <div className="flex-row flex md:flex-col m-2">
-                    <div className="border-b-2 border-white w-full md:w-24">
-                      <input
-                        className=" appearance-none bg-transparent border-none w-full text-gray-100 mr-3 py-1 px-2 leading-tight focus:outline-none placeholder:text-gray-100 placeholder:text-base "
-                        type="number"
-                        placeholder="USDT"
-                        aria-label="Enter Amount"
-                      />
-                    </div>
-                    <button
-                      className="mt-1 sm:mt-2 flex-shrink-0 text-base sm:text-xl font-bold text-white py-1 px-2 rounded"
-                      type="button"
-                    >
-                      APPROVE
-                    </button>
-                  </div>
-                  <div className="flex-row flex md:flex-col m-2">
-                    <div className="border-b-2 border-white w-full md:w-24">
-                      <input
-                        className=" appearance-none bg-transparent border-none w-full text-gray-100 mr-3 py-1 px-2 leading-tight focus:outline-none placeholder:text-gray-100 placeholder:text-base "
-                        type="number"
-                        placeholder="USDT"
-                        aria-label="Enter Amount"
-                      />
-                    </div>
-                    <button
-                      className="mt-1 sm:mt-2 flex-shrink-0 text-base sm:text-xl font-bold text-white py-1 px-2 rounded"
-                      type="button"
-                    >
-                      APPROVE
-                    </button>
-                  </div>
-                </div>
-              </form>
+            <div className="flex-col md:flex-row flex w-full">
+              <div className="flex flex-col align-middle justify-center text-white">
+                <input
+                  placeholder="Amount of USDC"
+                  type="number"
+                  className="p-4 rounded border-none bg-[#7b7676] my-2 outline-none  "
+                  value={depositUSDCValue}
+                  onChange={(e) => setDepositUSDCValue(e.target.value)}
+                />
+                {!(depositUSDCValue === "0") && (
+                  <button className="p-3 bg-[#77f177]">Approve</button>
+                )}
+                <input
+                  placeholder="Amount of USDT"
+                  type="number"
+                  className="p-4 rounded border-none bg-[#7b7676] my-2 outline-none "
+                  value={depositUSDTValue}
+                  onChange={(e) => setDepositUSDTValue(e.target.value)}
+                />
+                {!(depositUSDTValue === "0") && (
+                  <button
+                    className="p-3 bg-[#77f177]"
+                    onClick={handleApproveUSDC}
+                  >
+                    Approve
+                  </button>
+                )}
+                <input
+                  placeholder="Amount of DAI"
+                  type="number"
+                  className="p-4 rounded border-none bg-[#7b7676] my-2 outline-none "
+                  value={depositDAIValue}
+                  onChange={(e) => setDepositDAIValue(e.target.value)}
+                />
+                {!(depositDAIValue === "0") && (
+                  <button className="p-3 bg-[#77f177]">Approve</button>
+                )}
+                <button className="p-4 bg-[#ff4747] my-3 rounded">
+                  Submit
+                </button>
+              </div>
             </div>
           </div>
 

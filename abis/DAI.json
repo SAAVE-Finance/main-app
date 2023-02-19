@@ -1,7 +1,6 @@
 {
-  "address": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F",
+  "address": "0x8f3Cf7ad23Cd3CaDbD9735AFf958023239c6A063",
   "abi": [
-    { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" },
     {
       "anonymous": false,
       "inputs": [
@@ -184,6 +183,13 @@
       "inputs": [],
       "name": "ERC712_VERSION",
       "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "PERMIT_TYPEHASH",
+      "outputs": [{ "internalType": "bytes32", "name": "", "type": "bytes32" }],
       "stateMutability": "view",
       "type": "function"
     },
@@ -387,10 +393,57 @@
       "type": "function"
     },
     {
+      "inputs": [
+        { "internalType": "address", "name": "src", "type": "address" },
+        { "internalType": "address", "name": "dst", "type": "address" },
+        { "internalType": "uint256", "name": "wad", "type": "uint256" }
+      ],
+      "name": "move",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "name": "name",
       "outputs": [{ "internalType": "string", "name": "", "type": "string" }],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "holder", "type": "address" },
+        { "internalType": "address", "name": "spender", "type": "address" },
+        { "internalType": "uint256", "name": "nonce", "type": "uint256" },
+        { "internalType": "uint256", "name": "expiry", "type": "uint256" },
+        { "internalType": "bool", "name": "allowed", "type": "bool" },
+        { "internalType": "uint8", "name": "v", "type": "uint8" },
+        { "internalType": "bytes32", "name": "r", "type": "bytes32" },
+        { "internalType": "bytes32", "name": "s", "type": "bytes32" }
+      ],
+      "name": "permit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "usr", "type": "address" },
+        { "internalType": "uint256", "name": "wad", "type": "uint256" }
+      ],
+      "name": "pull",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        { "internalType": "address", "name": "usr", "type": "address" },
+        { "internalType": "uint256", "name": "wad", "type": "uint256" }
+      ],
+      "name": "push",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {

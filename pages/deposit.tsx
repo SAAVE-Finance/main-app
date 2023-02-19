@@ -1,4 +1,4 @@
-import DepositCard from "../components/Cards/DepositCard";
+import DepositCard from "@/components/Cards/depositCard";
 import React from "react";
 
 function deposit() {

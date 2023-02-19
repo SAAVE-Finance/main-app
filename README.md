@@ -1,38 +1,80 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SAAVE
 
-## Getting Started
+![hackathon-banner](https://user-images.githubusercontent.com/64047505/219971794-21c40b13-698d-43ca-84b2-60abbb2063bf.png)
 
-First, run the development server:
+## About
+
+### Participants
+
+| Name            | Github                                         | Discord         |
+| --------------- | ---------------------------------------------- | --------------- |
+| Pratham Singhal | [@Pratham-19](https://github.com/Pratham-19)   | Pratham#7898    |
+| Ritek Rounak    | [@RITEKROUNAK](https://github.com/RITEKROUNAK) | ritek#1239 |
+| Niku Singh  | [@NIKU-SINGH](https://github.com/NIKU-SINGH) | Niks#1433|
+| Joshua Porporino | [@JoshWeb3](https://github.com/JoshWeb3) | yesh#0001 |
+
+### Description
+
+Welcome SAAVE finance, designed to provide an easy and simple way for beginners to enter the world of decentralized finance. Our protocol offers a user-friendly interface that allows you to track your profits in real-time, making it easy to manage your investments.
+
+We have combined the most battle-tested protocols to deliver a safe and profitable experience. Our protocol works by first depositing stablecoins into AAVE, one of the most trusted lending protocols in the DeFi space. AAVE allows you to earn interest on your stablecoins by lending them to borrowers.
+
+Once you have deposited your stablecoins into AAVE, you will receive an AToken as a receipt for your loan. This AToken can then be deposited into Curve Finance, a decentralized exchange that specializes in stablecoins. Your AToken earns trading fees in Curve's liquidity pool, providing you with additional profits.
+
+By combining these protocols, we offer a safe and profitable way for you to earn passive income on your stablecoins. Our protocol is designed to be user-friendly and easy to navigate, making it accessible to beginners who are just getting started with DeFi.
+
+
+SAAVE is deployed on Polygon, a fast and low-cost side chain scaling solution for Ethereum. This allows for faster transaction times and lower fees, making it more accessible for everyone to use. With Polygon, you can enjoy the benefits of our DeFi protocol without having to worry about high gas fees or slow transaction times. Join us on Polygon today and start earning passive income on your stablecoins!
+
+
+## The problem SAAVE Finance solves
+It is hard for beginners to understand how to use current DeFi protocols that are in the ecosystem. UX is complicated in other apps and requires a lot of knowledge about how these programs work. We fix this by providing an easy to understand UI that is not seen in other applications, and we have a one click solution to do multiple investment strategies that have stood the test of time. Our platform allows users to view their dollars gained in real time, a feature not included in any other application. We also try to educate our users about where their money is going by providing information on each protocol interacted with and rewarding an NFT for reading and watching our content. Overall SAAVE is an introductory platform designed for people who are not experienced in DeFi to quickly dive in and invest in some of the safest profits the ecosystem has to offer in just a few clicks. This is a project that is not just a hackathon project, but a project our team is passionate about and plans to build further after the hackathon.
+
+
+### Preview
+
+
+## Set up Project
+Here's how to setup and run the project locally :
+
+### Prerequisites
+
+Here are some pre-requisites that you may require to run the project on your system.
+
+- Node (https://node.org/).
+- ReactJs (https://reactjs.org/).
+- NextJs (https://nextjs.org/) .
+
+### Install Project
+
+Done with the pre-requisites?
+
+Here are the steps to be taken after that :
+
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/SAAVE-Finance/landing.git
+```
+
+2. Change directory :
+
+```bash
+cd landing
+```
+3. Install dependencies :
+
+```bash
+npm install
+  or
+yarn install
+```
+
+4. Run 
 
 ```bash
 npm run dev
-# or
+  or
 yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+````

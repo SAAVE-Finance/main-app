@@ -3,10 +3,7 @@ import Panel from "@/components/Panel";
 import Earnings from "@/components/Earning";
 import { useContract } from "wagmi";
 import SaaveABI from "@/abis/abi.json";
-import Image from "next/image";
 import Saave from "@/components/Cards/Saave";
-import DepositCard from '@/components/Cards/DepositCard'
-
 
 export default function Home() {
   const contract = useContract({

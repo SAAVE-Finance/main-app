@@ -9,9 +9,10 @@ import USDCABI from "@/abis/usdc.json";
 import USDTABI from "@/abis/usdt.json";
 import DAIABI from "@/abis/DAI.json";
 import { ethers } from "ethers";
+import SAAVEABI from "@/abis/SAAVEABI.json";
 import { useContract, useSigner } from "wagmi";
 
-const Saave = () => {
+const DepositCard = () => {
   const [depositClicked, setDepositClicked] = useState(false);
   const [withdrawClicked, setWithdrawClicked] = useState(false);
   const {
@@ -37,11 +38,17 @@ const Saave = () => {
     abi: USDCABI.abi,
     signerOrProvider: signer,
   });
-
-  const USDTContract = {
+  const saaveContract = useContract({
+    address: SAAVEABI.address,
+    abi: SAAVEABI.abi,
+    signerOrProvider: signer,
+  });
+  const USDTContract = useContract({
     address: USDTABI.address,
     abi: USDTABI.abi,
-  };
+    signerOrProvider: signer,
+  });
+
   const DAIContract = {
     address: DAIABI.address,
     abi: DAIABI.abi,
@@ -49,14 +56,40 @@ const Saave = () => {
 
   const handleApproveUSDC = () => {
     console.log("Approving USDC");
-    USDTContract!.approve(
+    USDCContract!.approve(
       "0xEC68681511D9992bB297223b0f5195a2C8e55f84",
-      ethers.utils.parseUnits(depositUSDCValue.toString(), "ethers")
+      "1000000000000"
+      // ethers.utils.parseUnits(depositUSDCValue.toString(), "ethers")
     );
   };
-  // const handleSubmit = () => {
-  //   saaveContract2!.deposit();
+  const handleApproveUSDT = () => {
+    console.log("Approving USDC");
+    USDTContract!.approve(
+      "0xEC68681511D9992bB297223b0f5195a2C8e55f84",
+      "1000000000000"
+      // ethers.utils.parseUnits(depositUSDCValue.toString(), "ethers")
+    );
+  };
+  // const handleApproveDAI = () => {
+  //   console.log("Approving USDC");
+  //   USDCContract!.approve(
+  //     "0xEC68681511D9992bB297223b0f5195a2C8e55f84",
+  //     "1000000000000"
+  //     // ethers.utils.parseUnits(depositUSDCValue.toString(), "ethers")
+  //   );
   // };
+  // const { data } = useContractRead({
+  //   address: USDCABI.address,
+  //   abi: USDCABI.abi,
+  //   functionName: 'getBalance',
+  //   onSuccess: (data) => {
+  //     console.log(data)
+  //   }
+  // })
+  // }
+  const handleSubmit = () => {
+    saaveContract!.deposit();
+  };
   const router = useRouter();
   return (
     <div className="font-Inter h-[80vh] w-full p-10 flex items-center justify-center relative">
@@ -105,20 +138,10 @@ const Saave = () => {
                   placeholder="Amount of USDC"
                   type="number"
                   className="p-4 rounded border-none bg-[#7b7676] my-2 outline-none  "
-                  value={depositUSDCValue}
+                  // value={depositUSDCValue}
                   onChange={(e) => setDepositUSDCValue(e.target.value)}
                 />
                 {!(depositUSDCValue === "0") && (
-                  <button className="p-3 bg-[#77f177]">Approve</button>
-                )}
-                <input
-                  placeholder="Amount of USDT"
-                  type="number"
-                  className="p-4 rounded border-none bg-[#7b7676] my-2 outline-none "
-                  value={depositUSDTValue}
-                  onChange={(e) => setDepositUSDTValue(e.target.value)}
-                />
-                {!(depositUSDTValue === "0") && (
                   <button
                     className="p-3 bg-[#77f177]"
                     onClick={handleApproveUSDC}
@@ -127,16 +150,39 @@ const Saave = () => {
                   </button>
                 )}
                 <input
+                  placeholder="Amount of USDT"
+                  type="number"
+                  className="p-4 rounded border-none bg-[#7b7676] my-2 outline-none "
+                  // value={depositUSDTValue}
+                  onChange={(e) => setDepositUSDTValue(e.target.value)}
+                />
+                {!(depositUSDTValue === "0") && (
+                  <button
+                    className="p-3 bg-[#77f177]"
+                    onClick={handleApproveUSDT}
+                  >
+                    Approve
+                  </button>
+                )}
+                <input
                   placeholder="Amount of DAI"
                   type="number"
                   className="p-4 rounded border-none bg-[#7b7676] my-2 outline-none "
-                  value={depositDAIValue}
+                  // value={depositDAIValue}
                   onChange={(e) => setDepositDAIValue(e.target.value)}
                 />
                 {!(depositDAIValue === "0") && (
-                  <button className="p-3 bg-[#77f177]">Approve</button>
+                  <button
+                    className="p-3 bg-[#77f177]"
+                    onClick={handleApproveUSDT}
+                  >
+                    Approve
+                  </button>
                 )}
-                <button className="p-4 bg-[#ff4747] my-3 rounded">
+                <button
+                  className="p-4 bg-[#ff4747] my-3 rounded"
+                  onClick={handleSubmit}
+                >
                   Submit
                 </button>
               </div>
@@ -148,9 +194,9 @@ const Saave = () => {
               Wallet Balance
             </h2>
             <div className="mt-4 p-4">
-              <p className="text-lg text-white "> DAI : $ {usdcAllowance}</p>
-              <p className="text-lg text-white "> USDC : $ {usdtAllowance}</p>
-              <p className="text-lg text-white "> USDT : $ {daiAllowance}</p>
+              <p className="text-lg text-white "> DAI : $ 2.5775</p>
+              <p className="text-lg text-white "> USDC : $ 2.763</p>
+              <p className="text-lg text-white "> USDT : $ 3.245</p>
             </div>
           </div>
         </div>
@@ -169,4 +215,4 @@ const Saave = () => {
   );
 };
 
-export default Saave;
+export default DepositCard;

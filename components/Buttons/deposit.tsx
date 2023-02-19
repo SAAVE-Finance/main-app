@@ -71,7 +71,8 @@ const Deposit = () => {
         className="bg-transparent text-xl md:text-3xl font-bold text-gray-300 hover:text-white"
         onClick={handleClick}
       >
-        DEPOSIT</button>
+        DEPOSIT
+      </button>
 
       <Modal
         open={open}

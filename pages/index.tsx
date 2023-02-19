@@ -5,6 +5,8 @@ import { useContract } from "wagmi";
 import SaaveABI from "@/abis/abi.json";
 import Image from "next/image";
 import Saave from "@/components/Cards/Saave";
+import DepositCard from '@/components/Cards/DepositCard'
+
 
 export default function Home() {
   const contract = useContract({
@@ -20,10 +22,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <main className="font-Inter">
         <Earnings />
         {/* <Panel /> */}
         <Saave />
+        {/* <DepositCard /> */}
       </main>
     </>
   );

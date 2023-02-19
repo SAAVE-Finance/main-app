@@ -39,21 +39,21 @@ const Earnings = () => {
         {/* <h1 className="text-3xl font-bold my-5">Your Earnings</h1> */}
         <div className="flex justify-around">
           <section>
-            <h2 className="text-2xl font-bold my-3">Earned</h2>
-            <h2 className="text-xl font-bold my-3">$ {earned}</h2>
+            <h2 className="text-2xl font-medium my-3">Earned</h2>
+            <h2 className="text-xl font-medium my-3">$ {earned}</h2>
           </section>
           <div>
-            <h2 className="text-2xl font-bold my-3">Deposits</h2>
-            <h2 className="text-xl font-bold my-3">$ {deposit}</h2>
+            <h2 className="text-2xl font-medium my-3">Deposits</h2>
+            <h2 className="text-xl font-medium my-3">$ {deposit}</h2>
           </div>
         </div>
-        <h2 className="my-5 text-xl">
+        <h2 className="my-5 text-2xl font-medium">
           Wooho! You have earned a 4% interset on your deposit.
         </h2>
       </section>
     );
   } else {
-    return <div className="text-white">Connect to wallet to earn </div>;
+    return <div className="text-white text-center text-xl">Connect to wallet to earn </div>;
   }
 };
 

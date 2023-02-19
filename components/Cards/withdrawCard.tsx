@@ -47,7 +47,7 @@ function Saave() {
 
                     </p>
                 </div> */}
-                <div className='relative -bottom-4 sm:-bottom-24 md:-bottom-28  flex justify-end'>
+                <div className='relative -bottom-4 sm:-bottom-24 md:-bottom-28 flex justify-end'>
                     <Image src={Network} alt="img" height={400} width={400} className="h-10 w-10" />
                 </div>
             </div>

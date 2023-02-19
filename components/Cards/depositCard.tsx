@@ -4,8 +4,6 @@ import Circle from "@/public/assets/Ellipse.png";
 import Logo from "@/public/assets/Saave.png";
 import Network from "@/public/assets/network.png";
 import { AuthContext } from "@/context/auth";
-import Deposit from "../Buttons/deposit";
-import Withdraw from "../Buttons/withdraw";
 import { useRouter } from "next/router";
 
 const Saave = () => {
@@ -65,15 +63,15 @@ const Saave = () => {
           SAAVE
         </div>
 
-        <div className="flex-col lg:flex-row flex items-center justify-center lg:divide-x-2 ">
+        <div className="mt-5 flex-col lg:flex-row flex items-center justify-center lg:divide-x-2 ">
           <div className="w-full">
             <h2 className="text-xl md:text-3xl font-bold text-gray-300 hover:text-white mt-4">
               DEPOSIT
             </h2>
             <div className=" p-4 mt-2 ">
               <form className="w-full md:w-1/2">
-                <div className="flex-col md:flex-row flex items-center py-2">
-                  <div className="flex-row flex md:flex-col m-2">
+                <div className="flex-col  flex items-center py-2">
+                  <div className="flex flex-col md:flex-col m-2">
                     <div className="border-b-2 border-white w-full md:w-24">
                       <input
                         className=" appearance-none bg-transparent border-none w-full text-gray-100 mr-3 py-1 px-2 leading-tight focus:outline-none placeholder:text-gray-100 placeholder:text-base "
@@ -131,9 +129,9 @@ const Saave = () => {
               Wallet Balance
             </h2>
             <div className="mt-4 p-4">
-              <p className="text-lg text-white ">USDC : $ {usdtAllowance}</p>
-              <p className="text-lg text-white ">USDC : $ {daiAllowance}</p>
-              <p className="text-lg text-white ">USDC : $ {usdcAllowance}</p>
+              <p className="text-lg text-white "> DAI : $ {usdcAllowance}</p>
+              <p className="text-lg text-white "> USDC : $ {usdtAllowance}</p>
+              <p className="text-lg text-white "> USDT : $ {daiAllowance}</p>
             </div>
           </div>
         </div>

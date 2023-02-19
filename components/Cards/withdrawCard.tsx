@@ -82,7 +82,7 @@ function Saave() {
       <div className="relative mt-10 h-auto w-full md:w-[60vw] p-10 bg-gray-400 rounded-2xl bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-40 border border-gray-100">
         <div className="flex-col lg:flex-row flex items-center justify-center lg:divide-x-2 ">
           <div className="w-full justify-center grid">
-            <h2 className="text-xl md:text-3xl font-bold text-gray-300 hover:text-white mt-4 text-center">
+            <h2 className="text-xl md:text-4xl font-bold text-gray-300 hover:text-white mt-4 text-center">
               Withdraw
             </h2>
             <div className="mt-2  flex">

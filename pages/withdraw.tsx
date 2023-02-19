@@ -1,12 +1,12 @@
-import WithdrawCard from '@/components/Cards/withdrawCard'
-import React from 'react'
+import WithdrawCard from "../components/Cards/withdrawCard";
+import React from "react";
 
 function withdraw() {
   return (
     <div>
-        <WithdrawCard />
+      <WithdrawCard />
     </div>
-  )
+  );
 }
 
-export default withdraw
+export default withdraw;

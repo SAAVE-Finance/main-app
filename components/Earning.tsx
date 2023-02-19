@@ -1,11 +1,11 @@
 import { useAccount, useContract, useContractReads } from "wagmi";
-import SaaveABI from "@/abis/abi.json";
-import { BigNumber, BigNumberish, ethers } from "ethers";
+import SAAVEABI from "@/abis/SAAVEABI.json";
+import { BigNumberish, ethers } from "ethers";
 import { useState } from "react";
 const Earnings = () => {
   const saaveContract = {
-    address: "0xBFbA56f89f343dc43B99Dcb0c6e30045d2D2E948",
-    abi: SaaveABI,
+    address: SAAVEABI.address,
+    abi: SAAVEABI.abi,
   };
   const { data, isError, isLoading } = useContractReads({
     contracts: [
@@ -53,7 +53,11 @@ const Earnings = () => {
       </section>
     );
   } else {
-    return <div className="text-white text-center text-xl">Connect to wallet to earn </div>;
+    return (
+      <div className="text-white text-center text-xl">
+        Connect to wallet to earn{" "}
+      </div>
+    );
   }
 };
 

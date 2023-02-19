@@ -113,7 +113,7 @@ const Earnings = () => {
     );
   } else {
     return (
-      <div className="text-white text-center text-xl">
+      <div className="text-white text-center animate-text bg-gradient-to-r from-teal-500 via-purple-500 to-orange-500 bg-clip-text text-transparent text-5xl font-black ">
         Connect to wallet to earn{" "}
       </div>
     );

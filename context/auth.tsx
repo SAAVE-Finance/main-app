@@ -85,7 +85,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const { data } = useContractRead({
     ...saaveContract,
     functionName: "getUserDeposit",
-    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
     onSuccess(data: BigNumber) {
       if (data) {
         var totalDeposited = ethers.utils.formatEther(data);
@@ -102,7 +101,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useContractRead({
     ...saaveContract,
     functionName: "getPoolDAIBalance",
-    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
     onSuccess(data: BigNumber) {
       if (data) {
         var daiPool = ethers.utils.formatEther(data);
@@ -119,7 +117,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useContractRead({
     ...saaveContract,
     functionName: "getPoolUSDCBalance",
-    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
     onSuccess(data: BigNumber) {
       if (data) {
         var usdcPool = ethers.utils.formatEther(data);
@@ -136,7 +133,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useContractRead({
     ...saaveContract,
     functionName: "getPoolUSDTBalance",
-    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
     onSuccess(data: BigNumber) {
       if (data) {
         var usdtPool = ethers.utils.formatEther(data);
@@ -151,7 +147,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useContractRead({
     ...saaveContract,
     functionName: "totalLP",
-    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
     onSuccess(data: BigNumber) {
       if (data) {
         var totalLP = ethers.utils.formatEther(data);
@@ -167,7 +162,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useContractRead({
     ...saaveContract,
     functionName: "getUserLP",
-    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
     onSuccess(data: BigNumber) {
       if (data) {
         var userLP = ethers.utils.formatEther(data);
@@ -183,7 +177,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useContractRead({
     ...saaveContract,
     functionName: "totalCRVEarned",
-    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
     onSuccess(data: BigNumber) {
       if (data) {
         var crv = ethers.utils.formatEther(data);
@@ -198,7 +191,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   useContractRead({
     ...saaveContract,
     functionName: "getCRVSold",
-    overrides: { from: "0x3de8a470b8563785250E855676BEdd62478a0492" },
     onSuccess(data: BigNumber) {
       if (data) {
         var crvUSD = ethers.utils.formatEther(data);
@@ -210,35 +202,35 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     },
   });
 
-  const { isError, isLoading } = useContractReads({
-    contracts: [
-      {
-        ...saaveContract,
-        functionName: "getWalletUSDCBalance",
-      },
-      {
-        ...saaveContract,
-        functionName: "getWalletUSDTBalance",
-      },
-      {
-        ...saaveContract,
-        functionName: "getWalletDAIBalance",
-      },
-    ],
-    async onSuccess(data: [BigNumberish, BigNumberish, BigNumberish]) {
-      if (data[0] && data[1] && data[2]) {
-        var totalDeposited = ethers.utils.formatEther(data[0]);
-        setWalletUSDCBalance(totalDeposited);
-        var totalEarned = ethers.utils.formatEther(data[1]);
-        setWalletUSDTBalance(totalEarned);
-        var totalEarned = ethers.utils.formatEther(data[2]);
-        setWalletDAIBalance(totalEarned);
-      }
-    },
-    onError(error) {
-      console.log("Error in getWalletBalance", error);
-    },
-  });
+//   const { isError, isLoading } = useContractReads({
+//     contracts: [
+//       {
+//         ...saaveContract,
+//         functionName: "getWalletUSDCBalance",
+//       },
+//       {
+//         ...saaveContract,
+//         functionName: "getWalletUSDTBalance",
+//       },
+//       {
+//         ...saaveContract,
+//         functionName: "getWalletDAIBalance",
+//       },
+//     ],
+//     async onSuccess(data: [BigNumberish, BigNumberish, BigNumberish]) {
+//       if (data[0] && data[1] && data[2]) {
+//         var totalDeposited = ethers.utils.formatEther(data[0]);
+//         setWalletUSDCBalance(totalDeposited);
+//         var totalEarned = ethers.utils.formatEther(data[1]);
+//         setWalletUSDTBalance(totalEarned);
+//         var totalEarned = ethers.utils.formatEther(data[2]);
+//         setWalletDAIBalance(totalEarned);
+//       }
+//     },
+//     onError(error) {
+//       console.log("Error in getWalletBalance", error);
+//     },
+//   });
 
   return (
     <AuthContext.Provider

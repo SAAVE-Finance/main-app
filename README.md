@@ -61,7 +61,7 @@ git clone https://github.com/SAAVE-Finance/main-app.git
 2. Change directory :
 
 ```bash
-cd landing
+cd main-app
 ```
 3. Install dependencies :
 
